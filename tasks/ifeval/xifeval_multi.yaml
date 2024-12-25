@@ -1,0 +1,21 @@
+group: xifeval_multi
+task:
+  - xifeval_en
+  - xifeval_zh
+  - xifeval_es
+  - xifeval_hu
+  - xifeval_fr
+  - xifeval_de
+  - xifeval_ru
+  - xifeval_ja
+  - xifeval_th
+  - xifeval_sw
+  - xifeval_bn
+  - xifeval_te
+  - xifeval_ar
+  - xifeval_ko
+  - xifeval_vi
+  - xifeval_cs
+  - xifeval_sr
+metadata:
+  version: 4.0

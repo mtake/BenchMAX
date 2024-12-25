@@ -1,0 +1,21 @@
+group: ifeval_multi_google
+task:
+  - ifeval_google_en
+  - ifeval_google_zh
+  - ifeval_google_es
+  - ifeval_google_hu
+  - ifeval_google_fr
+  - ifeval_google_de
+  - ifeval_google_ru
+  - ifeval_google_ja
+  - ifeval_google_th
+  - ifeval_google_sw
+  - ifeval_google_bn
+  - ifeval_google_te
+  - ifeval_google_ar
+  - ifeval_google_ko
+  - ifeval_google_vi
+  - ifeval_google_cs
+  - ifeval_google_sr
+metadata:
+  version: 4.0

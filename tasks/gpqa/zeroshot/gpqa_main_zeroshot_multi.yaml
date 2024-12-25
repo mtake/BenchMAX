@@ -1,0 +1,19 @@
+group: gpqa_main_zeroshot_multi
+task:
+  - gpqa_main_zeroshot_en
+  - gpqa_main_zeroshot_zh
+  - gpqa_main_zeroshot_es
+  - gpqa_main_zeroshot_hu
+  - gpqa_main_zeroshot_fr
+  - gpqa_main_zeroshot_de
+  - gpqa_main_zeroshot_ru
+  - gpqa_main_zeroshot_ja
+  - gpqa_main_zeroshot_th
+  - gpqa_main_zeroshot_sw
+  - gpqa_main_zeroshot_bn
+  - gpqa_main_zeroshot_te
+  - gpqa_main_zeroshot_ar
+  - gpqa_main_zeroshot_ko
+  - gpqa_main_zeroshot_vi
+  - gpqa_main_zeroshot_cs
+  - gpqa_main_zeroshot_sr
