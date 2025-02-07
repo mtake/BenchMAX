@@ -1,5 +1,5 @@
 [submodule "LiveCodeBench"]
-	path = LiveCodeBench
+	path = tasks/LiveCodeBench
 	url = https://github.com/LiveCodeBench/LiveCodeBench.git
 [submodule "RULER"]
 	path = tasks/RULER
