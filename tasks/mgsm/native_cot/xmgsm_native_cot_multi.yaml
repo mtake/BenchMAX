@@ -1,0 +1,21 @@
+group: xmgsm_native_cot_multi
+task:
+  - xmgsm_native_cot_en
+  - xmgsm_native_cot_zh
+  - xmgsm_native_cot_es
+  - xmgsm_native_cot_hu
+  - xmgsm_native_cot_fr
+  - xmgsm_native_cot_de
+  - xmgsm_native_cot_ru
+  - xmgsm_native_cot_ja
+  - xmgsm_native_cot_th
+  - xmgsm_native_cot_sw
+  - xmgsm_native_cot_bn
+  - xmgsm_native_cot_te
+  - xmgsm_native_cot_ar
+  - xmgsm_native_cot_ko
+  - xmgsm_native_cot_vi
+  - xmgsm_native_cot_cs
+  - xmgsm_native_cot_sr
+metadata:
+  version: 3.0
