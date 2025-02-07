@@ -2,5 +2,5 @@
 	path = LiveCodeBench
 	url = https://github.com/LiveCodeBench/LiveCodeBench.git
 [submodule "RULER"]
-	path = RULER
+	path = tasks/RULER
 	url = https://github.com/NVIDIA/RULER.git
