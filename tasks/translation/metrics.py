@@ -33,9 +33,10 @@ def _get_xComet():
     def inner(srcs, hyps, refs):
         nonlocal comet_model
         assert len(srcs) == len(hyps) == len(refs[0]), "The number of translations should be equal to the number of references"
-        from comet import load_from_checkpoint
+        from comet import load_from_checkpoint, download_model
         if comet_model is None:
-            comet_model = load_from_checkpoint("/cpfs01/shared/XNLP_H800/hf_hub/models--Unbabel--XCOMET-XXL/snapshots/f57bb369094d9a2c9da5073d06e2bb4feaea1c51/checkpoints/model.ckpt", local_files_only=True)
+            model_path = download_model("Unbabel/XCOMET-XXL")
+            comet_model = load_from_checkpoint(model_path, local_files_only=True)
         data = [{"src": src, "ref": ref, "mt": hyp} for src, hyp, ref in zip(srcs, hyps, refs[0])]
         prediction = comet_model.predict(data, batch_size=16, gpus=1)
         return prediction.system_score

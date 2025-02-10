@@ -6,21 +6,21 @@ from diff_match_patch import diff_match_patch
 def load_testset(task_name, lang, is_src=False):
     match task_name:
         case "ifeval":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/ifeval/ifeval_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"ifeval_{lang}", split="train")
         case "gpqa":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/gpqa/gpqa_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"gpqa_{lang}", split="train")
         case "lcb_v4":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/lcb_v4/lcb_v4_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"lcb_v4_{lang}", split="train")
         case "mgsm":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/mgsm/mgsm_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"mgsm_{lang}", split="train")
         case "humaneval":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/humaneval/humaneval_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"humaneval_{lang}", split="train")
         case "nexus":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/nexus/nexus_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"nexus_{lang}", split="train")
         case "arenahard":
-            testset = load_dataset("json", data_files=f"../data/domain_translation/arenahard/arenahard_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_Domain_Translation", name=f"arenahard_{lang}", split="train")
         case "flores":
-            testset = load_dataset("json", data_files=f"../data/general_translation/flores200/flores_200_{lang}.jsonl", split="train")
+            testset = load_dataset("LLaMAX/BenchMAX_General_Translation", name=f"flores_{lang}", split="train")
         case _:
             raise ValueError(f"Unknown task: {task_name}")
     if is_src and type(testset[0]["text"]) is list:
@@ -30,11 +30,11 @@ def load_testset(task_name, lang, is_src=False):
 def load_unidirectional_testset(task_name, src_lang, tgt_lang):
     match task_name:
         case "wmt24":
-            src_dataset = load_dataset("json", data_files=f"../data/general_translation/wmt24/wmt24.{src_lang}-{tgt_lang}.{src_lang}.jsonl", split="train")
-            tgt_dataset = load_dataset("json", data_files=f"../data/general_translation/wmt24/wmt24.{src_lang}-{tgt_lang}.{tgt_lang}.jsonl", split="train")
+            src_dataset = load_dataset("LLaMAX/BenchMAX_General_Translation", name=f"wmt24_{src_lang}-{tgt_lang}_{src_lang}", split="train")
+            tgt_dataset = load_dataset("LLaMAX/BenchMAX_General_Translation", name=f"wmt24_{src_lang}-{tgt_lang}_{tgt_lang}", split="train")
         case "ted":
-            src_dataset = load_dataset("json", data_files=f"../data/general_translation/ted/test.{src_lang}.jsonl", split="train")
-            tgt_dataset = load_dataset("json", data_files=f"../data/general_translation/ted/test.{tgt_lang}.jsonl", split="train")
+            src_dataset = load_dataset("LLaMAX/BenchMAX_General_Translation", name=f"ted_{src_lang}", split="train")
+            tgt_dataset = load_dataset("LLaMAX/BenchMAX_General_Translation", name=f"ted_{tgt_lang}", split="train")
             src_dataset, tgt_dataset = process_ted_data(src_dataset, tgt_dataset)
         case _:
             raise ValueError(f"Unknown task: {task_name}")
