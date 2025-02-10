@@ -1,4 +1,4 @@
-dataset_path: json
+dataset_path: LLaMAX/BenchMAX_Rule-based
 dataset_name: null
 output_type: generate_until
 test_split: train
