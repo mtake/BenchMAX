@@ -92,8 +92,8 @@ class Evaluator:
 
     def get_eval_dataset(self) -> Dataset:
         d = load_dataset(
-            path="json",
-            data_files=self.testset_name,
+            path="LLaMAX/BenchMAX_Multiple_Functions",
+            name=self.testset_name,
             split="train",
         )
         return d
@@ -140,7 +140,6 @@ class Evaluator:
             path="Nexusflow/NexusRaven_API_evaluation",
             name="standardized_api_list",
             split="train",
-            cache_dir="/cpfs01/shared/XNLP_H800/huangxu/.cache/huggingface/datasets"
         )
         return build_functions(d)
 
