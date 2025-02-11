@@ -4,3 +4,6 @@
 [submodule "RULER"]
 	path = tasks/RULER
 	url = https://github.com/xuuHuang/RULER.git
+[submodule "tasks/evalplus"]
+	path = tasks/evalplus
+	url = https://github.com/xuuHuang/evalplus.git
