@@ -6,7 +6,6 @@ BenchMAX is a comprehensive, high-quality, and multiway parallel multilingual be
 comprising 10 tasks designed to assess crucial capabilities across 17 diverse language.
 
 ## News
-**📢[Feb 12, 2025] BenchMAX is launched!**
 
 **🔥[Feb 12, 2025] Released the multilingual benchmark**
 
@@ -30,11 +29,11 @@ We evaluate multiple crucial capabilities of large language models(LLMs) in mult
 We evaluate common multilingual large language models as shown in the following table.
 The results are averaged across 17 languages.
 
-![main results](./images/main_results)
+![main results](./images/main_results.png)
 
 The detailed results for each language are illustrated in the figure below.
 
-![detailed results](./images/detail_results)
+![detailed results](./images/detail_results.png)
 
 ## Supported Languages
 Arabic, Bengali, Chinese, Czech, English, French, German, Hungarian, Japanese, Korean, Serbian, Spanish, Swahili, Telugu, Thai, Russian, Vietnamese
