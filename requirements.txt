@@ -1,0 +1,21 @@
+vllm
+openai
+# ifeval
+nltk
+langdetext
+pythainlp
+kss
+sacrebleu[ja]
+sacrebleu[ko]
+immutabledict
+pyext==0.7
+pebble
+python-crfsuite
+# evalplus
+termcolor
+appdirs
+tree_sitter>=0.22.0
+tree-sitter-python
+fire
+# arenahard
+shortuuid
