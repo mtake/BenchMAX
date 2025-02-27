@@ -1,14 +1,17 @@
-vllm
+pyyaml>6.0.0
+vllm>=0.7.0
 openai
+anthropic
+datasets
 # ifeval
+setuptools_scm
 nltk
-langdetext
+langdetect
 pythainlp
 kss
 sacrebleu[ja]
 sacrebleu[ko]
 immutabledict
-pyext==0.7
 pebble
 python-crfsuite
 # evalplus
