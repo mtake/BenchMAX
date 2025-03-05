@@ -46,3 +46,8 @@ class Qwen2OutputParser:
         text = m.group(1)
         output = json.loads(text)
         return output["name"], output["arguments"]
+
+class R1DistillModelOutputParser(GenericOutputParser):
+    def parse(self, text: str):
+        text = text.split("</think>")[-1].strip()
+        return super().parse(text)

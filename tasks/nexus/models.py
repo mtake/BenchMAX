@@ -15,7 +15,7 @@ class VLLMCausalLLM:
             tokenizer=tokenizer,
             tensor_parallel_size=tensor_parallel_size,
             dtype="bfloat16",
-            enforce_eager=True,
+            # enforce_eager=True,
             trust_remote_code=trust_remote_code,
             **kwargs
         )

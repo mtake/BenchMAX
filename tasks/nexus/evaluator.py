@@ -7,7 +7,7 @@ from datasets import Dataset, load_dataset
 from vllm import SamplingParams
 
 from utils import build_functions
-from output_parser import Llama3OutputParser, GenericOutputParser, Qwen2OutputParser
+from output_parser import Llama3OutputParser, GenericOutputParser, Qwen2OutputParser, R1DistillModelOutputParser
 from models import VLLMCausalLLM, OpenAILLM
 
 
@@ -23,6 +23,8 @@ class Evaluator:
     trust_remote_code: bool = False
     tokenizer: str = None
     tokenizer_support_tools: str = None
+    max_tokens: int = 512
+    temperature: float = 0.0
 
     base_url: str = None
 
@@ -75,7 +77,7 @@ class Evaluator:
         accuracy = 100 * sum(accuracies) / len(eval_dataset)
         print(f"Accuracy: {accuracy:.3f}%")
 
-        testset_name = "nexus_" + self.testset_name[-8:-6]
+        testset_name = "nexus_" + self.testset_name
         model_name = os.path.basename(self.model_name)
         os.makedirs(os.path.join(self.output_dir, model_name), exist_ok=True)
         output_path = f"{self.output_dir}/{model_name}/{model_name}_{testset_name}_{self.output_parser_name}.json"
@@ -108,7 +110,7 @@ class Evaluator:
                     trust_remote_code=self.trust_remote_code,
                     tokenizer_support_tools=self.tokenizer_support_tools=="true",
                 )
-                self.sampling_params = SamplingParams(temperature=0.0, max_tokens=512)
+                self.sampling_params = SamplingParams(temperature=self.temperature, max_tokens=self.max_tokens)
             case "openai_api":
                 api_key = os.getenv("OPENAI_API_KEY", None)
                 if api_key is None:
@@ -117,8 +119,8 @@ class Evaluator:
                     )
                 self.model = OpenAILLM(model_name=self.model_name, base_url=self.base_url, api_key=api_key)
                 self.sampling_params = {
-                    "temperature": 0,
-                    "max_completion_tokens": 512,
+                    "temperature": self.temperature,
+                    "max_completion_tokens": self.max_tokens,
                 }
             case _:
                 raise NotImplementedError
@@ -131,6 +133,8 @@ class Evaluator:
                 self.output_parser = GenericOutputParser()
             case "qwen2":
                 self.output_parser = Qwen2OutputParser()
+            case "r1_distill":
+                self.output_parser = R1DistillModelOutputParser()
             case _:
                 raise NotImplementedError
 
@@ -153,6 +157,8 @@ if __name__ == "__main__":
     parser.add_argument("--trust-remote-code", action="store_true")
     parser.add_argument("--base-url", type=str, default=None)
     parser.add_argument("--infer-backend", type=str, required=True)
+    parser.add_argument("--max-tokens", type=int, default=512)
+    parser.add_argument("--temperature", type=float, default=0.0)
 
     parser.add_argument("--testset-name", "-t", type=str, required=True)
     parser.add_argument("--output-parser-name", type=str, required=True)
