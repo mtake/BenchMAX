@@ -1,8 +1,6 @@
 from datasets import load_dataset
 import random
 
-from diff_match_patch import diff_match_patch
-
 def load_testset(task_name, lang, is_src=False):
     match task_name:
         case "ifeval":
@@ -103,6 +101,7 @@ def process_ted_data(src_dataset, tgt_dataset):
     src_ids = set(new_src_dataset["id"])
     tgt_ids = set(new_tgt_dataset["id"])
     common_ids = src_ids.intersection(tgt_ids)
+    common_ids = sorted(list(common_ids))
     if len(common_ids) > 1000:
         random.seed(42)
         common_ids = random.sample(common_ids, 1000)
@@ -119,14 +118,3 @@ def convert_to_refs(tgt_datasets):
             tgt_datasets[k] = [ref for ref in zip(*v["text"])]
         else:
             tgt_datasets[k] = [v["text"]]
-
-
-def diff_lineMode(text1, text2):
-    dmp = diff_match_patch()
-    a = dmp.diff_linesToChars(text1, text2)
-    lineText1 = a[0]
-    lineText2 = a[1]
-    lineArray = a[2]
-    diffs = dmp.diff_main(lineText1, lineText2, False)
-    dmp.diff_charsToLines(diffs, lineArray)
-    return diffs

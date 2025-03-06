@@ -4,6 +4,7 @@ import json
 
 from prompt import PROMPTS, LANG_DICT
 from models import build_model
+from output_parser import build_output_parser
 from utils import (
     load_testset, 
     load_unidirectional_testset, 
@@ -45,6 +46,7 @@ def main():
     parser.add_argument("--trust-remote-code", action="store_true")
     parser.add_argument("--base-url", type=str, default=None)
     parser.add_argument("--num-concurrent", type=int, default=1)
+    parser.add_argument("--output-parser", type=str, default=None)
     parser.add_argument("--output-dir", type=str, default="./output")
     args, unknown_args = parser.parse_known_args()
     unknown_args_dict = {unknown_args[i].lstrip('--'): handle_arg_string(unknown_args[i + 1]) for i in range(0, len(unknown_args), 2)}
@@ -85,10 +87,12 @@ def main():
 
     print(f"Building model {args.model_name}")
     model = build_model(args.model_name, args.infer_backend, args.tokenizer, args.tensor_parallel_size, args.trust_remote_code, args.base_url, args.num_concurrent, **unknown_args_dict)
+    model_output_parser = build_output_parser(args.output_parser)
 
     print("Generating translations...")
     print(messages[0])
     outputs = model.chat(messages, temperature=0.0, max_tokens=args.max_tokens)
+    outputs = model_output_parser.parse(outputs)
     post_process(outputs, task_name)
 
     model_name = os.path.basename(args.model_name)
