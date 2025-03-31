@@ -22,7 +22,7 @@ class Evaluator:
     tensor_parallel_size: int = None
     trust_remote_code: bool = False
     tokenizer: str = None
-    tokenizer_support_tools: str = None
+    tokenizer_support_tools: bool = None
     max_tokens: int = 512
     temperature: float = 0.0
 
@@ -108,7 +108,7 @@ class Evaluator:
                     tokenizer=self.tokenizer,
                     tensor_parallel_size=self.tensor_parallel_size,
                     trust_remote_code=self.trust_remote_code,
-                    tokenizer_support_tools=self.tokenizer_support_tools=="true",
+                    tokenizer_support_tools=self.tokenizer_support_tools,
                 )
                 self.sampling_params = SamplingParams(temperature=self.temperature, max_tokens=self.max_tokens)
             case "openai_api":
