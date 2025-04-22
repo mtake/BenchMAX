@@ -6,8 +6,9 @@ BenchMAX is a comprehensive, high-quality, and multiway parallel multilingual be
 comprising 10 tasks designed to assess crucial capabilities across 17 diverse language.
 
 ## News
+**🔥[Apr 22, 2025] Update the results of DeepSeek-R1-Distill Models**
 
-**🔥[Feb 12, 2025] Released the multilingual benchmark**
+[Feb 12, 2025] Released the multilingual benchmark
 
 ## Dataset Download
 We evaluate multiple crucial capabilities of large language models(LLMs) in multilingual scenarios. The dataset links are as follows:
@@ -49,6 +50,35 @@ pip install -r requirements.txt
 ```
 
 ## Evaluation
+
+You can simply use the script `run.sh` to evaluate one model on one task.
+
+```bash
+./run.sh <model> <task> <languages> [additional arguments]
+```
+
+Examples:
+
+```bash
+./run.sh meta-llama/Llama-3.1-8B-Instruct rule_based en
+./run.sh /path/to/your/local/model xgpqa all # "all" means all 17 languages
+./run.sh meta-llama/Llama-3.1-8B-Instruct problem-solving all /path/to/your/local/model # The fourth argument for the problem-solving task is specified as the local model path
+```
+
+The translation tasks are not supported in `run.sh`. Please see the commands in [Translation Tasks](#translation-tasks) section.
+
+For more details on how to run each task and customize the arguments, see the following sections:
+- [Rule-based Instruction Following Task](#rule-based-instruction-following-task)
+- [Model-based Instruction Following Task](#model-based-instruction-following-task)
+- [Function Completion Task](#function-completion-task)
+- [Programming Problem Solving Task](#programming-problem-solving-task)
+- [Math Reasoning Task](#math-reasoning-task)
+- [Science Reasoning Task](#science-reasoning-task)
+- [Long Context Task](#long-context-task)
+- [Tool Use Task](#tool-use-task)
+- [Translation Tasks](#translation-tasks)
+
+
 ### Rule-based Instruction Following Task
 We employ [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) to run this task. First clone its repository and install the lm-eval package:
 
@@ -224,7 +254,6 @@ for i in "${!tasks[@]}"; do
 done
 ```
 
-<a name="citation"></a>
 ## Citation
 If our dataset helps your work, please cite this paper:
 ```
