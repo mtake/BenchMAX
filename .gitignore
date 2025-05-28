@@ -193,3 +193,4 @@ LiveCodeBench/output/
 # added by takeuchi
 /checkpoints*
 /granite*
+/results*
