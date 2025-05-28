@@ -8,7 +8,7 @@ setuptools_scm
 nltk
 langdetect
 pythainlp
-kss
+# kss  # XXX removed to avoid sudo
 sacrebleu[ja]
 sacrebleu[ko]
 immutabledict
