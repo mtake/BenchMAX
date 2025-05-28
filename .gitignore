@@ -189,3 +189,7 @@ RULER/results/
 LiveCodeBench/logs/
 LiveCodeBench/cache/
 LiveCodeBench/output/
+
+# added by takeuchi
+/checkpoints*
+/granite*
