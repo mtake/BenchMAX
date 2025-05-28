@@ -131,7 +131,7 @@ case "$TASK" in
         echo "Don't forget to prepare model path and data path in ruler's config scripts config_models.sh and run.sh"
         pushd tasks/RULER/scripts > /dev/null
         pushd data/synthetic/json > /dev/null
-        if [ ! -d "haystack"] then
+        if [ ! -d "haystack"]; then
             bash download_haystack.sh
         fi
         if [ ! -d "qas" ]; then
