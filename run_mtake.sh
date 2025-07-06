@@ -17,13 +17,15 @@ echo "XXX LOGFILE ${LOGFILE}" | tee -a ${LOGFILE}
 echo "XXX DATETIME ${START_TIME_STR}" | tee -a ${LOGFILE}
 
 LANGS=()
-#LANGS+=("en,ja")
-#LANGS+=("en")
-LANGS+=("ja")
+LANGS+=("en,ja")
+# LANGS+=("en")
+# LANGS+=("ja")
 MODELS=()
-MODELS+=("ibm-granite/granite-3.3-8b-instruct")
-MODELS+=("granite-3.3-8b-instruct-teigaku-genzei-interp")
-MODELS+=("granite-3.3-8b-instruct-teigaku-genzei")
+# MODELS+=("ibm-granite/granite-3.3-8b-instruct")
+# MODELS+=("granite-3.3-8b-instruct-teigaku-genzei-interp")
+# MODELS+=("granite-3.3-8b-instruct-teigaku-genzei")
+MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100-interp")
+MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100")
 TASKS=()
 TASKS+=("xgpqa")
 
