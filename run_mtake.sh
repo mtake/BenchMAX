@@ -29,6 +29,10 @@ MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100")
 TASKS=()
 TASKS+=("xgpqa")
 
+ENV=""
+#ENV="TOKENIZERS_PARALLELISM=false ${ENV}"
+ENV="PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True ${ENV}"
+
 for l in "${LANGS[@]}"; do
     for m in "${MODELS[@]}"; do
 	for t in "${TASKS[@]}"; do
@@ -36,7 +40,7 @@ for l in "${LANGS[@]}"; do
 	    THIS_START_TIME_STR="$(${DATE_CMD} -d @${THIS_START_TIME} +%Y%m%d-%H%M%S)"
 	    echo "XXX THIS_DATETIME ${THIS_START_TIME_STR}" | tee -a ${LOGFILE}
 
-	    cmd="./run.sh ${m} ${t} ${l}"
+	    cmd="${ENV}./run.sh ${m} ${t} ${l}"
 	    echo "$cmd" | tee -a ${LOGFILE}
 	    eval "$cmd" 2>&1 | tee -a ${LOGFILE}
 
