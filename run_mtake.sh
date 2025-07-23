@@ -37,6 +37,7 @@ ENV=""
 #ENV="TOKENIZERS_PARALLELISM=false ${ENV}"
 ENV="PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True ${ENV}"
 #ENV="VLLM_WORKER_MULTIPROC_METHOD=spawn ${ENV}"  # @@@ahoaho XXX WIP
+# @@@ahoaho XXX
 ENV="TENSOR_PARALLEL_SIZE=2 ${ENV}"  # for granite-4.0-small
 
 for l in "${LANGS[@]}"; do
