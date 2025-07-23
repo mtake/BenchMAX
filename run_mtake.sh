@@ -27,8 +27,8 @@ MODELS=()
 # MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100-interp")
 # MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100")
 # MODELS+=("granite-3.3-8b-instruct-jfe-technical-report_r5-interp" "granite-3.3-8b-instruct-jfe-technical-report_r5")
-# MODELS+=("granite-4.0-tiny-prerelease-greylock-r250721a")
-MODELS+=("granite-4.0-small-prerelease-greylock-r250721a")
+MODELS+=("granite-4.0-tiny-prerelease-greylock-r250721a")
+# MODELS+=("granite-4.0-small-prerelease-greylock-r250721a")  # @@@ahoaho XXX WIP
 
 TASKS=()
 TASKS+=("xgpqa")
@@ -37,6 +37,7 @@ ENV=""
 #ENV="TOKENIZERS_PARALLELISM=false ${ENV}"
 ENV="PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True ${ENV}"
 #ENV="VLLM_WORKER_MULTIPROC_METHOD=spawn ${ENV}"  # @@@ahoaho XXX WIP
+#ENV="TENSOR_PARALLEL_SIZE=2 ${ENV}"  # @@@ahoaho XXX WIP
 
 for l in "${LANGS[@]}"; do
     for m in "${MODELS[@]}"; do
@@ -45,7 +46,8 @@ for l in "${LANGS[@]}"; do
 	    THIS_START_TIME_STR="$(${DATE_CMD} -d @${THIS_START_TIME} +%Y%m%d-%H%M%S)"
 	    echo "XXX THIS_DATETIME ${THIS_START_TIME_STR}" | tee -a ${LOGFILE}
 
-	    cmd="${ENV}./run.sh ${m} ${t} ${l}"
+	    # cmd="${ENV}./run.sh ${m} ${t} ${l}"
+	    cmd="${ENV}./run_enhanced.sh ${m} ${t} ${l}"
 	    echo "$cmd" | tee -a ${LOGFILE}
 	    eval "$cmd" 2>&1 | tee -a ${LOGFILE}
 
