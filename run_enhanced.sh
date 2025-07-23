@@ -51,16 +51,22 @@ fi
 TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-1}
 echo "XXX TENSOR_PARALLEL_SIZE: ${TENSOR_PARALLEL_SIZE}"
 
+VLLM_OPT=""
+if (( TENSOR_PARALLEL_SIZE > 1 )); then
+    VLLM_OPT=",tensor_parallel_size=${TENSOR_PARALLEL_SIZE}${VLLM_OPT}"
+    VLLM_OPT=",disable_custom_all_reduce=True${VLLM_OPT}"
+fi
+
 case "$TASK" in
     # --------------------------- Rule-based Instruction Following Task ---------------------------
     "rule_based"|"xifeval")
         if [ "$LANG" == "all" ]; then
             echo "Running Rule-based Instruction Following Task on all languages..."
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks xifeval_multi --batch_size auto --apply_chat_template --include_path tasks/ifeval --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks xifeval_multi --batch_size auto --apply_chat_template --include_path tasks/ifeval --log_samples -o results
         else
             echo "Running Rule-based Instruction Following Task on language: ${LANGS[@]}..."
             tasks=$(IFS=','; echo "${LANGS[*]/#/xifeval_}")
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/ifeval --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/ifeval --log_samples -o results
         fi
         ;;
     # --------------------------- Model-based Instruction Following Task ---------------------------
@@ -111,22 +117,22 @@ case "$TASK" in
     "math"|"xmgsm")
         if [ "$LANG" == "all" ]; then
             echo "Running Math Reasoning Task on all languages..."
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks xmgsm_native_cot_multi --batch_size auto --apply_chat_template --include_path tasks/mgsm --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks xmgsm_native_cot_multi --batch_size auto --apply_chat_template --include_path tasks/mgsm --log_samples -o results
         else
             echo "Running Math Reasoning Task on language: ${LANGS[@]}..."
             tasks=$(IFS=','; echo "${LANGS[*]/#/xmgsm_native_cot_}")
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/mgsm --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/mgsm --log_samples -o results
         fi
         ;;
     # --------------------------- Science Reasoning Task ---------------------------
     "science"|"xgpqa")
         if [ "$LANG" == "all" ]; then
             echo "Running Science Reasoning Task on all languages..."
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks xgpqa_main_native_cot_zeroshot_multi --batch_size auto --apply_chat_template --include_path tasks/gpqa --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks xgpqa_main_native_cot_zeroshot_multi --batch_size auto --apply_chat_template --include_path tasks/gpqa --log_samples -o results
         else
             echo "Running Science Reasoning Task on language: ${LANGS[@]}..."
             tasks=$(IFS=','; echo "${LANGS[*]/#/xgpqa_main_native_cot_zeroshot_}")
-            lm-eval -m vllm --model_args pretrained=${MODEL},tensor_parallel_size=${TENSOR_PARALLEL_SIZE} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/gpqa --log_samples -o results
+            lm-eval -m vllm --model_args pretrained=${MODEL}${VLLM_OPT} --tasks $tasks --batch_size auto --apply_chat_template --include_path tasks/gpqa --log_samples -o results
         fi
         ;;
     # --------------------------- Long Context Task ---------------------------
