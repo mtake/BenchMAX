@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# Run on a Linux machine with GPU
+#
+
 # for macOS
 if command -v gdate &> /dev/null
 then
@@ -16,10 +20,24 @@ LOGFILE="${BASENAME}-${START_TIME_STR}-${HOSTNAME_S}.log"
 echo "XXX LOGFILE ${LOGFILE}" | tee -a ${LOGFILE}
 echo "XXX DATETIME ${START_TIME_STR}" | tee -a ${LOGFILE}
 
+# count gpus
+if command -v nvidia-smi >/dev/null 2>&1; then
+    tensor_parallel_size=$(nvidia-smi --list-gpus | wc -l)
+else
+    tensor_parallel_size=0
+fi
+echo "XXX tensor_parallel_size: ${tensor_parallel_size}" | tee -a ${LOGFILE}
+
+if (( tensor_parallel_size == 0 )); then
+    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
+    exit 1
+fi
+
 LANGS=()
 LANGS+=("en,ja")
 # LANGS+=("en")
 # LANGS+=("ja")
+
 MODELS=()
 # MODELS+=("ibm-granite/granite-3.3-8b-instruct")
 # MODELS+=("granite-3.3-8b-instruct-teigaku-genzei-interp")
@@ -37,8 +55,7 @@ ENV=""
 #ENV="TOKENIZERS_PARALLELISM=false ${ENV}"
 ENV="PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True ${ENV}"
 #ENV="VLLM_WORKER_MULTIPROC_METHOD=spawn ${ENV}"  # @@@ahoaho XXX WIP
-# @@@ahoaho XXX
-ENV="TENSOR_PARALLEL_SIZE=2 ${ENV}"  # for granite-4.0-small
+ENV="TENSOR_PARALLEL_SIZE=${tensor_parallel_size} ${ENV}"
 
 for l in "${LANGS[@]}"; do
     for m in "${MODELS[@]}"; do
