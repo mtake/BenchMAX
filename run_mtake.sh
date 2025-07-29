@@ -46,8 +46,8 @@ MODELS=()
 # MODELS+=("granite-3.3-8b-instruct-ibm-newsroom-d5-x100")
 # MODELS+=("granite-3.3-8b-instruct-jfe-technical-report_r5-interp" "granite-3.3-8b-instruct-jfe-technical-report_r5")
 # MODELS+=("granite-4.0-tiny-prerelease-greylock-r250721a")
-# MODELS+=("granite-4.0-small-prerelease-greylock-r250721a")  # 2 GPUs
-MODELS+=("mistralai/Mistral-Small-3.2-24B-Instruct-2506")  # 2 GPUs
+MODELS+=("granite-4.0-small-prerelease-greylock-r250721a")  # 2 GPUs
+# MODELS+=("mistralai/Mistral-Small-3.2-24B-Instruct-2506")  # 2 GPUs. WIP need special flags to vLLM
 
 TASKS=()
 TASKS+=("xgpqa")
