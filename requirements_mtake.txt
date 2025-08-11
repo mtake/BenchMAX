@@ -1,0 +1,24 @@
+pyyaml>6.0.0
+vllm>=0.7.0
+openai
+anthropic
+datasets
+# ifeval
+setuptools_scm
+nltk
+langdetect
+pythainlp
+# kss  # XXX removed to avoid sudo
+sacrebleu[ja]
+# sacrebleu[ko]  # XXX removed to avoid missing mecab-ko
+immutabledict
+pebble
+python-crfsuite
+# evalplus
+termcolor
+appdirs
+tree_sitter>=0.22.0
+tree-sitter-python
+fire
+# arenahard
+shortuuid
