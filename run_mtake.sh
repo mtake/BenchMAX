@@ -53,7 +53,8 @@ MODELS=()
 # MODELS+=("openai/gpt-oss-20b")  # WIP
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-v0.2-interp" "granite-3.3-8b-instruct_teigaku-genzei-v0.2")
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6-interp" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6")  # v0.2
-MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_osft" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft")  # v0.2
+# MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_osft" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft")  # v0.2
+MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp")  # v0.2
 
 TASKS=()
 TASKS+=("xgpqa")
