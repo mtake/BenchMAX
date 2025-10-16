@@ -55,9 +55,9 @@ MODELS=()
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6-interp" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6")  # v0.2
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_osft" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft")  # v0.2
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp")  # v0.2
-MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp_0.6" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp_0.7")  # v0.2
+# MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp_0.6" "granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_sft_interp_0.7")  # v0.2
 # MODELS+=("granite-3.3-8b-instruct_teigaku-genzei-ibm-v6_osft_interp")  # v0.2
-# MODELS+=("ibm-granite/granite-4.0-h-small")  # 2 GPUs
+MODELS+=("ibm-granite/granite-4.0-h-small")  # 2 GPUs(vllm 0.9.2)
 
 TASKS=()
 TASKS+=("xgpqa")
