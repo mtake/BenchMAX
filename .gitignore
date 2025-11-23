@@ -193,4 +193,5 @@ LiveCodeBench/output/
 # added by takeuchi
 /checkpoints*
 /granite*
+/gpt-oss*
 /results*
