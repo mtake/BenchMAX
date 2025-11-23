@@ -63,7 +63,7 @@ MODELS=()
 # MODELS+=("granite-4.0-h-small_teigaku-genzei-ibm-v6_sft_interp" "granite-4.0-h-small_teigaku-genzei-ibm-v6_sft")  # 2 GPUs (vllm 0.9.2)
 # MODELS+=("granite-4.0-h-small_teigaku-genzei-ibm-v6_sft_interp_0.6" "granite-4.0-h-small_teigaku-genzei-ibm-v6_sft_interp_0.7")  # 2 GPUs (vllm 0.9.2)
 # MODELS+=("granite-4.0-h-small_teigaku-genzei-ibm-v6_sft-frozen-auxloss_interp" "granite-4.0-h-small_teigaku-genzei-ibm-v6_sft-frozen-auxloss")  # 2 GPUs (vllm 0.9.2)
-MODELS+=("openai/gpt-oss-20b" "gpt-oss-20b_teigaku-genzei-ibm-v6_sft_interp" "gpt-oss-20b_teigaku-genzei-ibm-v6_sft")  # 1 GPU (vllm 0.10.2)
+MODELS+=("openai/gpt-oss-20b" "gpt-oss-20b_teigaku-genzei-ibm-v6_sft_interp" "gpt-oss-20b_teigaku-genzei-ibm-v6_sft")  # 1 GPU (vllm 0.11.1)
 
 TASKS=()
 TASKS+=("xgpqa")
